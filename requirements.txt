@@ -1,0 +1,33 @@
+# FinRAG Copilot — Production Dependencies
+# ==========================================
+# Pin minor versions for reproducible builds; patch versions left flexible.
+
+# ── Core Framework ────────────────────────────────────────────────────────
+streamlit>=1.35.0,<2.0.0
+
+# ── LLM & Embedding APIs ──────────────────────────────────────────────────
+openai>=1.30.0,<2.0.0          # GPT-4o generation + text-embedding-3-small
+
+# ── Vector Database ───────────────────────────────────────────────────────
+chromadb>=0.5.0,<1.0.0         # Persistent dense vector store (HNSW index)
+
+# ── PDF Processing ────────────────────────────────────────────────────────
+PyMuPDF>=1.24.0,<2.0.0         # pymupdf / fitz — layout-preserving extraction
+Pillow>=10.0.0,<12.0.0         # Image I/O for chart extraction
+
+# ── Reranking (choose one or both) ────────────────────────────────────────
+cohere>=5.0.0,<6.0.0           # Cohere Rerank API (production; recommended)
+sentence-transformers>=3.0.0   # HuggingFace CrossEncoder (local fallback)
+
+# ── Utilities ─────────────────────────────────────────────────────────────
+numpy>=1.26.0,<3.0.0
+python-dotenv>=1.0.0           # Load .env for local development
+
+# ── Optional: Enhanced Table Extraction ───────────────────────────────────
+# Uncomment for production-grade table detection (replaces heuristic extractor):
+# camelot-py[cv]>=0.11.0       # Grid-based table extraction (requires OpenCV)
+# pdfplumber>=0.11.0            # Alternative table/layout parser
+
+# ── Optional: Enhanced Chunking ───────────────────────────────────────────
+# spacy>=3.7.0                  # Sentence-boundary chunking (replace regex splitter)
+# en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1.tar.gz
