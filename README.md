@@ -18,19 +18,19 @@ Ingests 10-Ks, earnings reports, and pitchbooks. Answers with cited evidence, re
 │  [ingestion.py]  Layout-Aware Multimodal Extraction                 │
 │   ├── Text Blocks   → SectionBoundaryChunker                        │
 │   ├── Tables        → Markdown + HTML (heuristic col detection)     │
-│   └── Chart Images  → GPT-4o Vision → text surrogate               │
+│   └── Chart Images  → GPT-4o Vision → text surrogate                │
 │      │                                                              │
 │      ▼                                                              │
 │  [vector_store.py]  Hybrid Dual-Vector Retrieval                    │
-│   ├── Dense  → OpenAI text-embedding-3-small → ChromaDB (cosine)   │
+│   ├── Dense  → OpenAI text-embedding-3-small → ChromaDB (cosine)    │
 │   ├── Sparse → Custom Okapi BM25                                    │
-│   └── Fusion → Reciprocal Rank Fusion (RRF)                        │
+│   └── Fusion → Reciprocal Rank Fusion (RRF)                         │
 │      │                                                              │
 │      ▼                                                              │
 │  [reranker.py]  Cross-Encoder Reranking                             │
 │   ├── Backend A: Cohere Rerank API (rerank-english-v3.0)            │
 │   ├── Backend B: HuggingFace CrossEncoder (local, free)             │
-│   └── Backend C: LLM Reranker fallback (GPT-4o scoring)            │
+│   └── Backend C: LLM Reranker fallback (GPT-4o scoring)             │
 │      │                                                              │
 │      ▼                                                              │
 │  [app.py]  Streamlit UI + GPT-4o Generation                         │
@@ -38,7 +38,7 @@ Ingests 10-Ks, earnings reports, and pitchbooks. Answers with cited evidence, re
 │   ├── Cited financial narrative response                            │
 │   ├── Citation cards (confidence score, section, page)              │
 │   ├── Rendered Markdown/HTML financial tables                       │
-│   └── Source chart image crops (base64 inline)                     │
+│   └── Source chart image crops (base64 inline)                      │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -68,8 +68,8 @@ Surfaces full transparency for metadata citations — exact chunk extraction hea
 Maps text metrics directly alongside tabular balance sheets and internal corporate data charts.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a5ab1d76-d1ca-464d-aba8-655a37ba8af4" width="49%" alt="Extracted Chart View" />
   <img src="https://github.com/user-attachments/assets/cd882b22-38b1-4b2c-a4e9-5a37ca805484" width="49%" alt="Structured Balance Sheet View" />
+  <img src="https://github.com/user-attachments/assets/a5ab1d76-d1ca-464d-aba8-655a37ba8af4" width="49%" alt="Extracted Chart View" />
 </p>
 ---
 
